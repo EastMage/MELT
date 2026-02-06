@@ -9,7 +9,7 @@ MELT first introduces learnable task prompts to explicitly guide the model in ca
 ###### QuickStart
 
 1. git clone this repos
-2. 
+2. Dependencies
 ```sh
 cd MELT
 pip install -e requirements.txt
