@@ -3,21 +3,7 @@
 
 This is the official repository for "Task-Aware Multimodal EHR Representation Learning via Variational Information Bottleneck"
 
-<!-- PROJECT SHIELDS -->
-
-<!-- PROJECT LOGO -->
-<br />
-
-<p align="center">
-  <a href="https://anonymous.4open.science/r/MELT-8156/">
-    <img src="overview.pdf" alt="Logo" width="180" height="180">
-  </a>
-
-  <h3 align="center">Task-Aware Multimodal EHR Representation Learning via Variational Information Bottleneck
-
-</p>
-
-
+MELT first introduces learnable task prompts to explicitly guide the model in capturing task-modality dependency. Then with a gating network that performs feature-wise modulation and compression, it generates a sparse, task-aware weight matrix from the prompts and input features. This process is regularized under the Variational Information Bottleneck (VIB) theory via a composite sparsity constraint, ensuring the model actively filters out redundant information and focuses on predictive features. Furthermore, an asymmetric fusion architecture aligns dynamic and static data in a manner consistent with clinical reasoning. Together, these components enable MELT to construct robust, compressed patient representations that are intrinsically tailored to specific clinical tasks. 
 
 
 ###### QuickStart
@@ -28,7 +14,7 @@ This is the official repository for "Task-Aware Multimodal EHR Representation Le
 cd MELT
 pip install -e requirements.txt
 ```
-3. Data Preparation
+3. Data Preparation<br />
 To access the datasets, please visit https://www.physionet.org/ and apply the data usage.
 
 4. Train 
