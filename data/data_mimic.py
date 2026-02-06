@@ -33,7 +33,7 @@ class Loading_Data(Dataset):
         self.tokenizer = tokenizer
         self.num_of_notes = args.num_of_notes
         self.num_of_labtests = args.num_of_labtests
-        self.use_pretrained_emb = args.use_pretrained_emb  # 新增参数，指示是否使用预训练嵌入
+        self.use_pretrained_emb = args.use_pretrained_emb  
         self.med_timestep = 24
 
 
@@ -45,7 +45,7 @@ class Loading_Data(Dataset):
 
         triage_variables = data_details['triage_variables']
         triage_variables = np.nan_to_num(triage_variables, nan=0.0)
-        triage_mask = 1 if np.sum(triage_variables) > 0 else 0  # 非全零则有效
+        triage_mask = 1 if np.sum(triage_variables) > 0 else 0  
 
         if 'labtest' in data_details.keys():
             labtest = data_details['labtest'].astype(float)
@@ -71,7 +71,7 @@ class Loading_Data(Dataset):
             else:
                 medication_adj = medication
 
-            # 扩展至12个时间步
+            
             if medication_adj.shape[0] < self.med_timestep:
                 last_row = medication_adj[-1:]
                 padding = np.repeat(last_row, self.med_timestep - medication_adj.shape[0], axis=0)
@@ -83,7 +83,7 @@ class Loading_Data(Dataset):
             med_mask = 0
 
         if 'diagnoses' in data_details.keys():
-            diagnoses = data_details['diagnoses']  # 原始形状 (1, 15795)
+            diagnoses = data_details['diagnoses']  
             diag_mask = 1 if np.sum(diagnoses) > 0 else 0
 
             if diagnoses.shape[1] != self.dim_diagnoses:
@@ -164,7 +164,7 @@ def collate_fn(batch):
         'lab': torch.stack([item['lab'] for item in batch]),
         'med': torch.stack([item['med'] for item in batch]),
         'diag': torch.stack([item['diag'] for item in batch]),
-        'clinical': torch.stack([item['clinical'] for item in batch]),  # 文本列表或张量
+        'clinical': torch.stack([item['clinical'] for item in batch]),  
         'masks': torch.stack([item['masks'] for item in batch]),
         'label': torch.stack([item['label'] for item in batch])
     }
